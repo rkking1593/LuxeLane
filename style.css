@@ -7,6 +7,10 @@ body{
     font-family: 'Poppins', sans-serif;
     width: 100%;
 }
+.container{
+    max-width: 1300px;
+    margin: auto;
+}
 .header{
     background: radial-gradient(#fff, #74b9ff);
     margin: auto;
@@ -18,6 +22,10 @@ body{
     align-items: center;
     justify-content: space-between;
     padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
 }
 .navbar .logo h2{
     font-size: 28px;
@@ -35,9 +43,11 @@ nav ul li{
 nav ul li a{
     text-decoration: none;
     color: black;
+    transition: color 0.3s ease;
+    font-weight: 500;
 }
 nav ul li a:hover{
-    border-bottom: 3px solid #fbc531;
+    color: #fbc531;
 }
 .navbar .menu-icon{
     display: none;
@@ -58,34 +68,54 @@ nav ul li a:hover{
     height: 100vh;
     align-items: center;
     justify-content: center;
+    gap: 40px;
+    padding: 40px 0;
 }
 .column{
     flex-basis: 50%;
     margin: 30px;
 }
 .column h1{
-    font-size: 50px;
-    line-height: 1.3;
-    margin-bottom: 20px;
+    font-size: 58px;
+    line-height: 1.15;
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 .column h1 span{
     color: #fbc531;
 }
 .column p{
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.8;
+    color: #333;
+    max-width: 600px;
+}
+.column img{
+    width: 100%;
+    max-width: 500px;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
 }
 .button-one{
     display: inline-block;
     background-color: #fbc531;
     text-decoration: none;
     font-size: 18px;
-    margin-top: 20px;
-    padding: 12px;
+    margin-top: 30px;
+    padding: 14px 32px;
     color: black;
-    border-radius: 15px;
+    border-radius: 50px;
     cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
+
+.button-one:hover{
+    transform: translateY(-3px);
+    background-color: #b89919;
+}
+
 @media only screen and (max-width: 768px){
     .main{
         height: auto;
@@ -130,18 +160,20 @@ nav ul li a:hover{
     margin-top: 15px;
     margin-bottom: 15px;
 }
-.categories .row img{
+.category-card img{
     height: 250px;
     width: 300px;
     margin-bottom: 20px;
+    border-radius: 12px;
 }
-.categories .row p{
+.category-card p{
     font-size: 18px;
 }
-.categories .row p span{
+.category-card p span{
     background-color: #74b9ff;
     padding: 5px;
     font-size: 16px;
+    border-radius: 5px;
 }
 @media only screen and (max-width: 768px){
     .categories .row{
@@ -176,11 +208,21 @@ nav ul li a:hover{
     height: 300px;
     width: 250px;
     margin-bottom: 20px;
+    border-radius: 12px;
+    object-fit: cover;
 }
 .products .product{
-    transition: transform 0.5s;
+    transition: all 0.3s ease;
     margin-bottom: 50px;
     cursor: pointer;
+    padding: 15px;
+    border-radius: 16px;
+}
+
+.products .product:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    background-color: white;
 }
 .products .row .product h4{
     font-weight: 400;
@@ -191,9 +233,6 @@ nav ul li a:hover{
 }
 .rating i{
     color: #fbc531;
-}
-.products .product:hover{
-    transform:translateY();
 }
 .offer{
     margin: 70px 0;
