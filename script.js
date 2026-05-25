@@ -1,18 +1,26 @@
 // ─── MOBILE MENU TOGGLE ───────────────────────────────────────────────────────
 const menuIcon = document.querySelector('.menu-icon');
 const navMenu = document.querySelector('nav ul');
- 
+
 menuIcon.addEventListener('click', () => {
   navMenu.classList.toggle('open');
 });
- 
-// Close menu when a nav link is clicked
+
+// Fix issue 7: smooth scroll + close menu on nav link click
 document.querySelectorAll('nav ul li a').forEach(link => {
-  link.addEventListener('click', () => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
     navMenu.classList.remove('open');
   });
 });
- 
+
 // ─── SMOOTH SCROLL: "Explore Products" button ─────────────────────────────────
 const exploreBtn = document.querySelector('.button-one');
 if (exploreBtn) {
@@ -20,10 +28,10 @@ if (exploreBtn) {
     document.querySelector('.products').scrollIntoView({ behavior: 'smooth' });
   });
 }
- 
+
 // ─── CART SYSTEM ──────────────────────────────────────────────────────────────
 let cart = [];
- 
+
 function updateCartCount() {
   const badge = document.querySelector('.cart-badge');
   if (badge) {
@@ -31,14 +39,14 @@ function updateCartCount() {
     badge.style.display = cart.length === 0 ? 'none' : 'flex';
   }
 }
- 
+
 function showToast(message) {
   const toast = document.getElementById('toast');
   toast.textContent = message;
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 2800);
 }
- 
+
 function addToCart(name, price) {
   const existing = cart.find(item => item.name === name);
   if (existing) {
@@ -49,10 +57,10 @@ function addToCart(name, price) {
   updateCartCount();
   showToast(`🛒 "${name}" added to cart!`);
 }
- 
+
 // ─── WISHLIST SYSTEM ──────────────────────────────────────────────────────────
 let wishlist = new Set();
- 
+
 function toggleWishlist(btn, name) {
   if (wishlist.has(name)) {
     wishlist.delete(name);
@@ -66,17 +74,17 @@ function toggleWishlist(btn, name) {
     showToast(`❤️ "${name}" added to wishlist!`);
   }
 }
- 
+
 // ─── INJECT BUTTONS INTO EVERY PRODUCT CARD ───────────────────────────────────
 document.querySelectorAll('.product').forEach(product => {
   const name = product.querySelector('h4')?.textContent.trim();
   const priceEl = product.querySelector('p');
   const priceText = priceEl?.textContent.trim();
- 
+
   // Get the last price number (discounted or regular)
   const prices = priceText?.match(/\$[\d.]+/g);
   const price = prices ? prices[prices.length - 1] : '$0.00';
- 
+
   // Add to Cart button
   const cartBtn = document.createElement('button');
   cartBtn.className = 'btn-cart';
@@ -91,7 +99,7 @@ document.querySelectorAll('.product').forEach(product => {
       cartBtn.style.backgroundColor = '';
     }, 1500);
   });
- 
+
   // Wishlist heart button
   const wishBtn = document.createElement('button');
   wishBtn.className = 'btn-wish';
@@ -102,14 +110,14 @@ document.querySelectorAll('.product').forEach(product => {
     toggleWishlist(wishBtn, name);
     wishBtn.innerHTML = wishlist.has(name) ? '♥' : '♡';
   });
- 
+
   const btnGroup = document.createElement('div');
   btnGroup.className = 'product-btns';
   btnGroup.appendChild(cartBtn);
   btnGroup.appendChild(wishBtn);
   product.appendChild(btnGroup);
 });
- 
+
 // ─── CART ICON IN NAVBAR ──────────────────────────────────────────────────────
 const cartIcon = document.querySelector('.cart-icon');
 if (cartIcon) {
@@ -125,7 +133,7 @@ if (cartIcon) {
     alert(`🛒 Your Cart:\n\n${items}\n\nTotal: $${total.toFixed(2)}`);
   });
 }
- 
+
 // ─── OFFER BUTTON MODAL ───────────────────────────────────────────────────────
 const offerBtn = document.getElementById('offer-button');
 if (offerBtn) {
@@ -143,7 +151,7 @@ if (offerBtn) {
       </div>
     `;
     document.body.appendChild(overlay);
- 
+
     overlay.querySelector('.modal-close').addEventListener('click', () => overlay.remove());
     overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
     overlay.querySelector('.modal-copy-btn').addEventListener('click', () => {
@@ -154,7 +162,7 @@ if (offerBtn) {
     });
   });
 }
- 
+
 // ─── SCROLL REVEAL ANIMATION ──────────────────────────────────────────────────
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -163,17 +171,17 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.1 });
- 
+
 document.querySelectorAll('.product, .category-card, .review').forEach(el => {
   el.classList.add('reveal');
   observer.observe(el);
 });
- 
+
 // ─── TOAST ELEMENT (injected once) ───────────────────────────────────────────
 const toast = document.createElement('div');
 toast.id = 'toast';
 document.body.appendChild(toast);
- 
+
 // ─── NAVBAR SCROLL SHADOW ─────────────────────────────────────────────────────
 window.addEventListener('scroll', () => {
   const nav = document.querySelector('.navbar');
@@ -185,7 +193,7 @@ window.addEventListener('scroll', () => {
     nav.style.background = 'transparent';
   }
 });
- 
+
 // ─── SEARCH PRODUCTS ──────────────────────────────────────────────────────────
 const searchInput = document.getElementById('search-input');
 const searchIcon = document.getElementById('search-icon');
@@ -208,13 +216,10 @@ function runSearch() {
 }
 
 if (searchInput) {
-  // Trigger on Enter key
   searchInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') runSearch();
   });
-  // Trigger on clicking the search icon
   searchIcon.addEventListener('click', runSearch);
-  // Clear search when input is emptied
   searchInput.addEventListener('input', () => {
     if (searchInput.value.trim() === '') {
       document.querySelectorAll('.product').forEach(p => p.style.display = '');
@@ -222,7 +227,7 @@ if (searchInput) {
     }
   });
 }
- 
+
 // ─── BACK TO TOP ──────────────────────────────────────────────────────────────
 const backToTop = document.getElementById('back-to-top');
 if (backToTop) {
@@ -233,4 +238,3 @@ if (backToTop) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
- 

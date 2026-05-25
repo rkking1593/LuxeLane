@@ -53,17 +53,16 @@ nav ul li a:hover{
 .navbar .menu-icon{
     display: none;
     width: 28px;
-    margin-left: 20px;
     cursor: pointer;
 }
- 
+
 /* ── Navbar Right ── */
 .navbar-right {
     display: flex;
     align-items: center;
     gap: 16px;
 }
- 
+
 /* ── Search Bar ── */
 .search-bar {
     display: flex;
@@ -92,7 +91,7 @@ nav ul li a:hover{
     cursor: pointer;
 }
 .search-bar i:hover { color: #fbc531; }
- 
+
 /* ── Cart Icon ── */
 .cart-icon {
     position: relative;
@@ -116,32 +115,47 @@ nav ul li a:hover{
     align-items: center;
     justify-content: center;
 }
- 
+
+/* ── MOBILE NAV ── */
 @media only screen and (max-width: 768px){
     nav ul{
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 70px;
+        top: 68px;
         left: 0;
+        right: 0;
         width: 100%;
-        background: rgba(255,255,255,0.97);
-        padding: 20px;
+        background: rgba(255,255,255,0.98);
+        padding: 10px 0;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         z-index: 999;
     }
     nav ul.open {
         display: flex;
     }
+    /* Fix issue 2: make entire li clickable */
     nav ul li {
         display: block;
-        margin: 10px 0;
+        margin: 0;
         font-size: 18px;
+        width: 100%;
+    }
+    nav ul li a {
+        display: block;
+        width: 100%;
+        padding: 14px 24px;
+    }
+    nav ul li a:hover {
+        background: #fbc53122;
     }
     .navbar .menu-icon{
         display: block;
     }
+    .search-bar { display: none; }
 }
+
+/* ── HERO ── */
 .main{
     display: flex;
     width: 100%;
@@ -194,32 +208,43 @@ nav ul li a:hover{
     transform: translateY(-3px);
     background-color: #b89919;
 }
- 
+
+/* Fix issue 3: hero mobile spacing */
 @media only screen and (max-width: 768px){
     .main{
         height: auto;
         flex-direction: column;
         text-align: center;
+        padding: 30px 0 50px 0;
+        gap: 20px;
     }
     .header{
         padding-left: 15px;
         padding-right: 15px;
     }
     .column{
-        margin: 25px;
+        margin: 15px 20px;
     }
     .column h1{
-        font-size: 45px;
-        margin-bottom: 25px;
+        font-size: 38px;
+        margin-bottom: 15px;
     }
+    .column p {
+        font-size: 15px;
+    }
+    /* Fix issue 4: category images on mobile */
     .column img{
-        height: 250px;
-        width: 350px;
+        width: 100%;
+        height: auto;
+        max-width: 320px;
     }
-    .button{
-        margin-top: 30px;
+    .button-one {
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
 }
+
+/* ── CATEGORIES ── */
 .categories{
     margin: 70px 0;
     text-align: center;
@@ -238,37 +263,56 @@ nav ul li a:hover{
     text-align: left;
     margin-top: 15px;
     margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0 20px;
 }
 .category-card{
     cursor: pointer;
     transition: transform 0.3s ease;
+    flex: 1 1 250px;
+    max-width: 320px;
 }
 .category-card:hover{
     transform: translateY(-6px);
 }
+/* Fix issue 4: category images not stretched */
 .category-card img{
-    height: 250px;
-    width: 300px;
-    margin-bottom: 20px;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    margin-bottom: 12px;
     border-radius: 12px;
+    display: block;
 }
 .category-card p{
-    font-size: 18px;
+    font-size: 16px;
+    padding: 4px 0;
 }
 .category-card p span{
     background-color: #74b9ff;
-    padding: 5px;
-    font-size: 16px;
+    padding: 4px 8px;
+    font-size: 14px;
     border-radius: 5px;
 }
 @media only screen and (max-width: 768px){
     .categories .row{
         flex-direction: column;
+        align-items: center;
+    }
+    .category-card {
+        width: 90%;
+        max-width: 400px;
+    }
+    .category-card img {
+        height: 200px;
     }
     .categories .row p{
-        margin-bottom: 40px;
+        margin-bottom: 10px;
     }
 }
+
+/* ── PRODUCTS ── */
 .products{
     margin: 50px 0;
     text-align: center;
@@ -282,26 +326,31 @@ nav ul li a:hover{
 }
 .products .row{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 75px;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 40px;
     flex-wrap: wrap;
     text-align: left;
     margin-top: 15px;
+    gap: 10px;
 }
 .products .row img{
-    height: 300px;
-    width: 250px;
-    margin-bottom: 20px;
+    width: 100%;
+    height: 260px;
+    margin-bottom: 12px;
     border-radius: 12px;
     object-fit: cover;
+    display: block;
 }
 .products .product{
     transition: all 0.3s ease;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     cursor: pointer;
     padding: 15px;
     border-radius: 16px;
+    /* Fix issue 5: consistent width, no shifting */
+    width: 220px;
+    flex: 0 0 220px;
 }
 .products .product:hover{
     transform: translateY(-10px);
@@ -309,29 +358,65 @@ nav ul li a:hover{
     background-color: white;
 }
 .products .row .product h4{
-    font-weight: 400;
-    font-size: 18px;
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 6px;
 }
 .products .row .product p{
-    font-size: 16px;
+    font-size: 15px;
 }
 .rating i{
     color: #fbc531;
+    font-size: 13px;
 }
- 
+
+/* Fix issue 5: mobile products — 2 per row, no shifting */
+@media only screen and (max-width: 768px){
+    .products .row {
+        margin: 0 10px;
+        gap: 10px;
+        justify-content: center;
+    }
+    .products .product {
+        width: calc(50% - 10px);
+        flex: 0 0 calc(50% - 10px);
+        padding: 10px;
+    }
+    .products .row img {
+        height: 180px;
+    }
+}
+@media only screen and (max-width: 420px){
+    .products .product {
+        width: calc(50% - 8px);
+        flex: 0 0 calc(50% - 8px);
+        padding: 8px;
+    }
+    .products .row img {
+        height: 150px;
+    }
+    .products .row .product h4 {
+        font-size: 13px;
+    }
+    .products .row .product p {
+        font-size: 13px;
+    }
+}
+
 /* ── Add to Cart & Wishlist Buttons ── */
 .product-btns {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-top: 12px;
+    gap: 6px;
+    margin-top: 10px;
+    flex-wrap: wrap;
 }
 .btn-cart {
     background-color: #fbc531;
     border: none;
-    padding: 8px 16px;
+    padding: 7px 12px;
     border-radius: 50px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -344,22 +429,24 @@ nav ul li a:hover{
 .btn-wish {
     background: transparent;
     border: 2px solid #fbc531;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ccc;
+    flex-shrink: 0;
 }
 .btn-wish:hover, .btn-wish.wishlisted {
     background-color: #fbc531;
     color: #e74c3c;
 }
- 
+
+/* ── OFFER ── */
 .offer{
     margin: 70px 0;
     padding: 30px 0;
@@ -407,43 +494,49 @@ nav ul li a:hover{
 @media only screen and (max-width: 768px){
     .offer .offer-container{
         flex-direction: column;
-        margin-top: 60px;
-        margin-left: 35px;
-        margin-right: 25px;
+        margin: 30px 20px;
     }
     .offer .offer-container .offer-image img{
-        margin-bottom: 60px;
+        width: 100%;
+        height: auto;
+        margin-bottom: 30px;
     }
     .offer .offer-container #offer-button{
-        display: block;
-        width: 175px;
-        text-align: center;
-        margin-bottom: 40px;
+        display: inline-block;
+        margin-bottom: 20px;
     }
 }
+
+/* ── REVIEWS ── */
 .reviews{
     margin-top: 50px;
     margin-bottom: 70px;
     text-align: center;
+    padding: 0 20px;
 }
+/* Fix issue 6: heading not touching screen edges */
 .reviews h2{
     display: inline-block;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 400;
     margin-bottom: 50px;
     border-bottom: 3px solid #fbc531;
+    max-width: 90%;
+    word-break: break-word;
 }
 .reviews .row{
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
-    margin: 0.75px;
+    align-items: stretch;
     text-align: center;
     margin-top: 15px;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 .reviews .review{
-    flex-basis: 30%;
-    padding: 40px 20px;
+    flex: 1 1 280px;
+    max-width: 380px;
+    padding: 30px 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     border-radius: 12px;
@@ -478,12 +571,17 @@ nav ul li a:hover{
 @media only screen and (max-width: 768px){
     .reviews .row{
         flex-direction: column;
-        margin: 0 40px;
+        align-items: center;
+        margin: 0;
     }
     .reviews .review{
-        margin-bottom: 50px;
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
     }
 }
+
+/* ── FOOTER ── */
 .footer{
     width: 100%;
     margin-top: 50px;
@@ -492,11 +590,13 @@ nav ul li a:hover{
     display: flex;
     justify-content: center;
     align-content: center;
+    flex-wrap: wrap;
 }
 .footer .row{
     padding: 20px;
     margin-right: 25px;
     flex-basis: 25%;
+    min-width: 160px;
 }
 .footer h2{
     font-size: 22px;
@@ -523,30 +623,29 @@ nav ul li a:hover{
 .footer ul{
     list-style: none;
     padding: 10px 0;
-    color: #000000c5;
 }
-.footer ul li {
-    margin: 6px 0;
-    cursor: pointer;
+.footer ul li { margin: 6px 0; }
+.footer ul li a {
+    text-decoration: none;
+    color: #000000c5;
     transition: color 0.2s ease;
 }
-.footer ul li:hover { color: #000; text-decoration: underline; }
-.footer .social ul li { cursor: pointer; }
+.footer ul li a:hover { color: #000; text-decoration: underline; }
+.footer ul li a i { margin-right: 6px; }
 @media only screen and (max-width: 768px){
     .footer{
         flex-direction: column;
         padding: 10px 25px;
     }
-    .footer p{
-        font-size: 18px;
-    }
+    .footer .row { margin-right: 0; }
+    .footer p{ font-size: 16px; }
 }
 .copyright{
     text-align: center;
     margin: 10px;
     color: #555;
 }
- 
+
 /* ── Scroll Reveal ── */
 .reveal {
     opacity: 0;
@@ -557,7 +656,7 @@ nav ul li a:hover{
     opacity: 1;
     transform: translateY(0);
 }
- 
+
 /* ── Toast Notification ── */
 #toast {
     position: fixed;
@@ -574,12 +673,14 @@ nav ul li a:hover{
     transition: all 0.4s ease;
     z-index: 9999;
     white-space: nowrap;
+    max-width: 90vw;
+    text-align: center;
 }
 #toast.show {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
- 
+
 /* ── Offer Modal ── */
 .modal-overlay {
     position: fixed;
@@ -590,6 +691,7 @@ nav ul li a:hover{
     justify-content: center;
     z-index: 9999;
     animation: fadeIn 0.3s ease;
+    padding: 20px;
 }
 .modal-box {
     background: white;
@@ -597,7 +699,7 @@ nav ul li a:hover{
     border-radius: 20px;
     text-align: center;
     max-width: 400px;
-    width: 90%;
+    width: 100%;
     position: relative;
     animation: popIn 0.3s ease;
 }
@@ -626,20 +728,10 @@ nav ul li a:hover{
     transition: all 0.3s ease;
 }
 .modal-copy-btn:hover { background: #e0a800; transform: translateY(-2px); }
- 
+
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
- 
-/* ── Footer Links ── */
-.footer ul li { margin: 6px 0; }
-.footer ul li a {
-    text-decoration: none;
-    color: #000000c5;
-    transition: color 0.2s ease;
-}
-.footer ul li a:hover { color: #000; text-decoration: underline; }
-.footer ul li a i { margin-right: 6px; }
- 
+
 /* ── Back to Top Button ── */
 #back-to-top {
     position: fixed;
@@ -661,11 +753,9 @@ nav ul li a:hover{
 }
 #back-to-top:hover { transform: translateY(-3px); background: #e0a800; }
 #back-to-top.show { display: flex; }
- 
+
 /* ── Product search hidden ── */
 .product.hidden { display: none; }
- 
-/* ── Mobile: hide search bar ── */
-@media only screen and (max-width: 768px) {
-    .search-bar { display: none; }
-}
+
+/* ── Smooth scroll for anchor links ── */
+html { scroll-behavior: smooth; }
