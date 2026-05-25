@@ -188,13 +188,37 @@ window.addEventListener('scroll', () => {
  
 // ─── SEARCH PRODUCTS ──────────────────────────────────────────────────────────
 const searchInput = document.getElementById('search-input');
+const searchIcon = document.getElementById('search-icon');
+
+function runSearch() {
+  const query = searchInput.value.toLowerCase().trim();
+  if (query !== '') {
+    document.querySelector('.products').scrollIntoView({ behavior: 'smooth' });
+  }
+  document.querySelectorAll('.product').forEach(product => {
+    const name = product.querySelector('h4')?.textContent.toLowerCase() || '';
+    if (query === '') {
+      product.style.display = '';
+    } else if (name.includes(query)) {
+      product.style.display = '';
+    } else {
+      product.style.display = 'none';
+    }
+  });
+}
+
 if (searchInput) {
+  // Trigger on Enter key
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') runSearch();
+  });
+  // Trigger on clicking the search icon
+  searchIcon.addEventListener('click', runSearch);
+  // Clear search when input is emptied
   searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase().trim();
-    document.querySelectorAll('.product').forEach(product => {
-      const name = product.querySelector('h4')?.textContent.toLowerCase() || '';
-      product.classList.toggle('hidden', query !== '' && !name.includes(query));
-    });
+    if (searchInput.value.trim() === '') {
+      document.querySelectorAll('.product').forEach(p => p.style.display = '');
+    }
   });
 }
  
