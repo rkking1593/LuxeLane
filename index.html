@@ -3,33 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuxeLane</title>
+    <title>LuxeLane – Premium Fashion & Lifestyle</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/06e5d6fffe.js" crossorigin="anonymous"></script>
 </head>
 <body>
+ 
+    <!-- ── NAVBAR ── -->
     <header class="header">
         <div class="container">
-        <div class="navbar">
-            <div class="logo">
-                <h2>LuxeLane</h2>
+            <div class="navbar">
+                <div class="logo">
+                    <h2>LuxeLane</h2>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#products">Store</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                    </ul>
+                </nav>
+                <div class="navbar-right">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search products..." />
+                        <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
+                    </div>
+                    <div class="cart-icon">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span class="cart-badge" style="display:none">0</span>
+                    </div>
+                    <img src="menu.png" alt="Menu" class="menu-icon">
+                </div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Store</a></li>
-                    <li><a href="#">My Account</a></li>
-                </ul>
-            </nav>
-            <img src="menu.png" alt="Menu" class="menu-icon">
         </div>
-        <div class="main">
-
+ 
+        <!-- ── HERO ── -->
+        <div class="main" id="home">
             <div class="column">
                 <h1>Add some <span>Swag</span> to<br/>Your Life!</h1>
                 <p>
-                    LuxeLane is a premier online destination for luxury fashion and lifestyle products. We curate the finest selection of high-end brands, ensuring that you have access to the latest trends and timeless classics. Our mission is to provide an unparalleled shopping experience, where quality meets style.
+                    LuxeLane is a premier online destination for luxury fashion and lifestyle products. We curate the finest selection of high-end brands, ensuring that you have access to the latest trends and timeless classics.
                 </p>
                 <a class="button-one">Explore Products</a>
             </div>
@@ -37,31 +54,33 @@
                 <img src="header-image.png" alt="Header Image">
             </div>
         </div>
-        </div>
     </header>
-    <div class="categories">
+ 
+    <!-- ── CATEGORIES ── -->
+    <div class="categories" id="categories">
         <h2>Top Categories</h2>
-
         <div class="row">
             <div class="category-card">
-                <img src="category-1.jpg" alt="Category 1">
+                <img src="category-1.jpg" alt="Watches">
                 <p><span>Upto 20% Off</span> | Watches</p>
             </div>
             <div class="category-card">
-                <img src="category-2.jpg" alt="Category 2">
+                <img src="category-2.jpg" alt="Shoes">
                 <p><span>Upto 15% Off</span> | Shoes</p>
             </div>
             <div class="category-card">
-                <img src="category-3.jpg" alt="Category 3">
+                <img src="category-3.jpg" alt="T-Shirts">
                 <p><span>Upto 25% Off</span> | T-Shirts</p>
             </div>
         </div>
     </div>
-    <div class="products">
+ 
+    <!-- ── FEATURED PRODUCTS ── -->
+    <div class="products" id="products">
         <h2>Featured Products</h2>
         <div class="row">
             <div class="product">
-                <img src="product-1.jpg" alt="Product 1">
+                <img src="product-1.jpg" alt="Red Printed Shirt">
                 <h4>Red Printed Shirt</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -73,7 +92,7 @@
                 <p>$50.00</p>
             </div>
             <div class="product">
-                <img src="product-2.jpg" alt="Product 2">
+                <img src="product-2.jpg" alt="HX Sport Shoes">
                 <h4>HX Sport Shoes</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -84,7 +103,7 @@
                 <p>$125.00</p>
             </div>
             <div class="product">
-                <img src="product-3.jpg" alt="Product 3">
+                <img src="product-3.jpg" alt="Comfortable Joggers">
                 <h4>Comfortable Joggers</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -96,7 +115,7 @@
                 <p>$65.00</p>
             </div>
             <div class="product">
-                <img src="product-4.jpg" alt="Product 4">
+                <img src="product-4.jpg" alt="Puma Plain Blue T-Shirt">
                 <h4>Puma Plain Blue T-Shirt</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -109,11 +128,13 @@
             </div>
         </div>
     </div>
+ 
+    <!-- ── TODAY'S DEALS ── -->
     <div class="products">
         <h2>Today's Deals</h2>
         <div class="row">
             <div class="product">
-                <img src="product-5.jpg" alt="Product 5">
+                <img src="product-5.jpg" alt="Zen's Men Casual Shoes">
                 <h4>Zen's Men Casual Shoes</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -125,7 +146,7 @@
                 <p><del>$125.00</del> &nbsp; $105.00</p>
             </div>
             <div class="product">
-                <img src="product-6.jpg" alt="Product 6">
+                <img src="product-6.jpg" alt="Puma Casual T-Shirt">
                 <h4>Puma Casual T-Shirt</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -136,7 +157,7 @@
                 <p><del>$80.00</del> &nbsp; $65.00</p>
             </div>
             <div class="product">
-                <img src="product-7.jpg" alt="Product 7">
+                <img src="product-7.jpg" alt="HX Socks">
                 <h4>HX Socks (Set of 3)</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -148,7 +169,7 @@
                 <p><del>$35.00</del> &nbsp; $25.00</p>
             </div>
             <div class="product">
-                <img src="product-8.jpg" alt="Product 8">
+                <img src="product-8.jpg" alt="Fossil TX23 Watch">
                 <h4>Fossil TX23 Watch</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -160,7 +181,7 @@
                 <p><del>$215.00</del> &nbsp; $210.00</p>
             </div>
             <div class="product">
-                <img src="product-9.jpg" alt="Product 9">
+                <img src="product-9.jpg" alt="RD Watch NC05">
                 <h4>RD Watch NC05</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -170,7 +191,7 @@
                 <p><del>$135.00</del> &nbsp; $128.00</p>
             </div>
             <div class="product">
-                <img src="product-10.jpg" alt="Product 10">
+                <img src="product-10.jpg" alt="Sparks Premium Sports Shoes">
                 <h4>Sparks Premium Sports Shoes</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -181,7 +202,7 @@
                 <p><del>$150.00</del> &nbsp; $132.00</p>
             </div>
             <div class="product">
-                <img src="product-11.jpg" alt="Product 11">
+                <img src="product-11.jpg" alt="Boyex Grey Casuals">
                 <h4>Boyex Grey Casuals</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -192,7 +213,7 @@
                 <p><del>$110.00</del> &nbsp; $100.00</p>
             </div>
             <div class="product">
-                <img src="product-12.jpg" alt="Product 12">
+                <img src="product-12.jpg" alt="Nike Gym Pants">
                 <h4>Nike Gym Pants</h4>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
@@ -204,31 +225,31 @@
             </div>
         </div>
     </div>
+ 
+    <!-- ── OFFER ── -->
     <div class="offer">
         <div class="offer-container">
             <div class="offer-image">
-                <img src="offer.png" alt="Offer Image">
+                <img src="offer.png" alt="Smart Band 2">
             </div>
             <div class="offer-details">
                 <p>Exclusively Available on LuxeLane</p>
                 <h1>Smart Band 2</h1>
                 <small>
-                    The All-new Smart Band 2 features a 25% larger display (than Smart Band 1) AMOLED color full-touch display with adjustable brightness, so everything can be clear as can be.<br/>
+                    The All-new Smart Band 2 features a 25% larger AMOLED color full-touch display with adjustable brightness, so everything can be clear as can be. Track your fitness, stay connected, and look great doing it.
                 </small>
                 <a class="button-two" id="offer-button">Redeem Offer</a>
             </div>
         </div>
     </div>
-    <div class="reviews">
-        <h2>What Our Customer's Say</h2>
-
+ 
+    <!-- ── REVIEWS ── -->
+    <div class="reviews" id="reviews">
+        <h2>What Our Customers Say</h2>
         <div class="row">
-
             <div class="review">
                 <i class="fa-solid fa-quote-left"></i>
-                <p>
-                    "I had a fantastic experience shopping at LuxeLane! The selection of luxury products is impressive, and the customer service was top-notch.<br/>I will definitely be back for more."
-                </p>
+                <p>"I had a fantastic experience shopping at LuxeLane! The selection of luxury products is impressive, and the customer service was top-notch. I will definitely be back for more."</p>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
@@ -236,14 +257,12 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </div>
-                <img src="user-1.jpg" alt="User 1">
+                <img src="user-1.jpg" alt="Jane Sins">
                 <h3>Jane Sins</h3>
             </div>
             <div class="review">
                 <i class="fa-solid fa-quote-left"></i>
-                <p>
-                    "LuxeLane has become my go-to online store for luxury fashion. The quality of the products is exceptional, and I love the variety they offer.<br/>Highly recommend!"
-                </p>
+                <p>"LuxeLane has become my go-to online store for luxury fashion. The quality of the products is exceptional, and I love the variety they offer. Highly recommend!"</p>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
@@ -251,14 +270,12 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star-half-stroke"></i>
                 </div>
-                <img src="user-2.jpg" alt="User 2">
+                <img src="user-2.jpg" alt="John Doe">
                 <h3>John Doe</h3>
             </div>
             <div class="review">
                 <i class="fa-solid fa-quote-left"></i>
-                <p>
-                    "I was blown away by the quality of the products I received from LuxeLane. The attention to detail is incredible, and I couldn't be happier with my purchase.<br/>People Should Try This"
-                </p>
+                <p>"I was blown away by the quality of the products I received from LuxeLane. The attention to detail is incredible, and I couldn't be happier with my purchase. Highly recommended!"</p>
                 <div class="rating">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
@@ -266,47 +283,55 @@
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </div>
-                <img src="user-3.jpg" alt="User 3">
+                <img src="user-3.jpg" alt="Maya Drakes">
                 <h3>Maya Drakes</h3>
             </div>
         </div>
     </div>
+ 
+    <!-- ── FOOTER ── -->
     <div class="footer">
-
         <div class="app row">
             <h2>Download Our App</h2>
-            <p>LuxeLane is available on Android and iOS Platform</p>
+            <p>LuxeLane is available on Android and iOS</p>
             <div class="download">
-                <img src="play-store.jpg" alt="Play Store">
-                <img src="app-store.jpg" alt="App Store">
+                <a href="#"><img src="play-store.jpg" alt="Get it on Google Play"></a>
+                <a href="#"><img src="app-store.jpg" alt="Download on App Store"></a>
             </div>
         </div>
         <div class="company row">
             <h2>LuxeLane</h2>
-            <p>Our Purpose is to Supply Quality Apparel Products to the Many</p>
+            <p>Our purpose is to supply quality apparel products to the many.</p>
         </div>
         <div class="links row">
             <h3>Useful Links</h3>
             <ul>
-                <li>Company</li>
-                <li>Return Policy</li>
-                <li>Customer Care</li>
-                <li>Join Affiliate</li>
+                <li><a href="#">Company</a></li>
+                <li><a href="#">Return Policy</a></li>
+                <li><a href="#">Customer Care</a></li>
+                <li><a href="#">Join Affiliate</a></li>
             </ul>
         </div>
         <div class="social row">
             <h3>Socials</h3>
             <ul>
-                <li>Facebook</li>
-                <li>Instagram</li>
-                <li>Twitter</li>
-                <li>Youtube</li>
+                <li><a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+                <li><a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                <li><a href="#"><i class="fa-brands fa-x-twitter"></i> Twitter</a></li>
+                <li><a href="#"><i class="fa-brands fa-youtube"></i> Youtube</a></li>
             </ul>
         </div>
     </div>
+ 
     <div class="copyright">
-        <p>Keep Shopping 💘 | Copyright @2026 LuxeLane</p>
+        <p>Keep Shopping 💘 | Copyright &copy; 2026 LuxeLane. All rights reserved.</p>
     </div>
+ 
+    <!-- ── BACK TO TOP ── -->
+    <button id="back-to-top" title="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+ 
     <script src="script.js" defer></script>
 </body>
 </html>
