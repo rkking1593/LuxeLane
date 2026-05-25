@@ -218,6 +218,7 @@ if (searchInput) {
   searchInput.addEventListener('input', () => {
     if (searchInput.value.trim() === '') {
       document.querySelectorAll('.product').forEach(p => p.style.display = '');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
 }
