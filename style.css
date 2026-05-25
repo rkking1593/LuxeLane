@@ -26,6 +26,7 @@ body{
     top: 0;
     z-index: 1000;
     backdrop-filter: blur(10px);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 .navbar .logo h2{
     font-size: 28px;
@@ -53,10 +54,54 @@ nav ul li a:hover{
     display: none;
     width: 28px;
     margin-left: 20px;
+    cursor: pointer;
 }
+
+/* ── Cart Icon ── */
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    margin-left: 20px;
+    transition: transform 0.2s ease;
+}
+.cart-icon:hover { transform: scale(1.15); }
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: #e74c3c;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media only screen and (max-width: 768px){
     nav ul{
         display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(255,255,255,0.97);
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+    nav ul.open {
+        display: flex;
+    }
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+        font-size: 18px;
     }
     .navbar .menu-icon{
         display: block;
@@ -110,7 +155,6 @@ nav ul li a:hover{
     transition: all 0.3s ease;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
-
 .button-one:hover{
     transform: translateY(-3px);
     background-color: #b89919;
@@ -160,6 +204,13 @@ nav ul li a:hover{
     margin-top: 15px;
     margin-bottom: 15px;
 }
+.category-card{
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.category-card:hover{
+    transform: translateY(-6px);
+}
 .category-card img{
     height: 250px;
     width: 300px;
@@ -203,7 +254,6 @@ nav ul li a:hover{
     text-align: left;
     margin-top: 15px;
 }
-  
 .products .row img{
     height: 300px;
     width: 250px;
@@ -218,7 +268,6 @@ nav ul li a:hover{
     padding: 15px;
     border-radius: 16px;
 }
-
 .products .product:hover{
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.08);
@@ -234,6 +283,48 @@ nav ul li a:hover{
 .rating i{
     color: #fbc531;
 }
+
+/* ── Add to Cart & Wishlist Buttons ── */
+.product-btns {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+.btn-cart {
+    background-color: #fbc531;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+.btn-cart:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+}
+.btn-wish {
+    background: transparent;
+    border: 2px solid #fbc531;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+}
+.btn-wish:hover, .btn-wish.wishlisted {
+    background-color: #fbc531;
+    color: #e74c3c;
+}
+
 .offer{
     margin: 70px 0;
     padding: 30px 0;
@@ -267,10 +358,16 @@ nav ul li a:hover{
     text-decoration: none;
     font-size: 18px;
     margin-top: 20px;
-    padding: 12px;
+    padding: 12px 24px;
     color: black;
     border-radius: 15px;
     cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.button-two:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 @media only screen and (max-width: 768px){
     .offer .offer-container{
@@ -314,6 +411,12 @@ nav ul li a:hover{
     padding: 40px 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.reviews .review:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 .reviews .review i.fa-quote-left{
     color: #fbc531;
@@ -336,9 +439,6 @@ nav ul li a:hover{
     color: #555;
     font-size: 18px;
     margin-top: 12px;
-}
-.reviews .review:hover{
-    box-shadow: none;
 }
 @media only screen and (max-width: 768px){
     .reviews .row{
@@ -381,12 +481,22 @@ nav ul li a:hover{
     width: 50%;
     margin-right: 20px;
     border-radius: 15%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
+.footer .download img:hover { transform: scale(1.05); }
 .footer ul{
     list-style: none;
     padding: 10px 0;
     color: #000000c5;
 }
+.footer ul li {
+    margin: 6px 0;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+.footer ul li:hover { color: #000; text-decoration: underline; }
+.footer .social ul li { cursor: pointer; }
 @media only screen and (max-width: 768px){
     .footer{
         flex-direction: column;
@@ -401,3 +511,86 @@ nav ul li a:hover{
     margin: 10px;
     color: #555;
 }
+
+/* ── Scroll Reveal ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Toast Notification ── */
+#toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #2d3436;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    opacity: 0;
+    transition: all 0.4s ease;
+    z-index: 9999;
+    white-space: nowrap;
+}
+#toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ── Offer Modal ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+.modal-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    animation: popIn 0.3s ease;
+}
+.modal-box h2 { font-size: 24px; margin-bottom: 15px; }
+.modal-box p { font-size: 16px; color: #444; line-height: 1.6; }
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+}
+.modal-copy-btn {
+    margin-top: 20px;
+    background: #fbc531;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+.modal-copy-btn:hover { background: #e0a800; transform: translateY(-2px); }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
