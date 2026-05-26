@@ -248,6 +248,8 @@ nav ul li a:hover{
 .categories{
     margin: 70px 0;
     text-align: center;
+    padding: 30px;
+    background-color: #999999;
 }
 .categories h2{
     display: inline-block;
